@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10. Строки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .container {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #666;
+        }
+        .example {
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-family: "Courier New", monospace;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>Урок 10: Строки</header>
+    <div class="container">
+        <h2>Что такое строки в C++?</h2>
+        <p>Строки в C++ — это последовательности символов. Строки в C++ могут быть представлены как массивы символов, а также с помощью стандартного типа данных <code>string</code>, который упрощает работу с текстовыми данными.</p>
+        <p>Строки можно создавать, изменять и манипулировать ими с помощью различных функций и методов, предоставляемых C++.</p>
+        
+        <div class="example">
+            <p><strong>Пример:</strong></p>
+            <pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    string name = "Алиса"; // Создаем строку
+    cout &lt;&lt; "Привет, " &lt;&lt; name &lt;&lt; "!" &lt;&lt; endl; // Выводим строку на экран
+    return 0;
+}
+            </pre>
+        </div>
+
+        <p>В этом примере создается строка <code>name</code> и выводится на экран приветственное сообщение.</p>
+        <a href="index.html">Назад на главную</a>
+    </div>
+</body>
+</html>
