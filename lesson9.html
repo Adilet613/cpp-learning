@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. Массивы</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .container {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #666;
+        }
+        .example {
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-family: "Courier New", monospace;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>Урок 9: Массивы</header>
+    <div class="container">
+        <h2>Что такое массивы в C++?</h2>
+        <p>Массивы в C++ — это коллекции однотипных данных, хранящихся в памяти подряд. Массивы позволяют эффективно работать с большими объемами данных и ускоряют выполнение программы, так как доступ к элементам массива происходит за постоянное время.</p>
+        <p>Массивы в C++ индексируются с нуля, что означает, что первый элемент массива имеет индекс 0, второй — 1 и так далее.</p>
+        
+        <div class="example">
+            <p><strong>Пример:</strong></p>
+            <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {1, 2, 3, 4, 5}; // Массив из 5 элементов
+
+    // Выводим элементы массива
+    for (int i = 0; i &lt; 5; i++) {
+        cout &lt;&lt; "Элемент массива " &lt;&lt; i &lt;&lt; ": " &lt;&lt; arr[i] &lt;&lt; endl;
+    }
+
+    return 0;
+}
+            </pre>
+        </div>
+
+        <p>В этом примере создается массив из 5 элементов, и с помощью цикла <code>for</code> мы выводим значения каждого элемента массива на экран.</p>
+        <a href="index.html">Назад на главную</a>
+    </div>
+</body>
+</html>
