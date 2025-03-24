@@ -2,17 +2,39 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7. Функции</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
+    <title>7. Исключения и обработка ошибок</title>
+</head>
+<body>
+    <header>7. Исключения и обработка ошибок в C++</header>
+    <div class="lesson">
+        <h3>Что такое исключения</h3>
+        <p>Исключения — это способ обработки ошибок в программе. Когда в программе возникает ошибка, она может быть "брошена" в виде исключения, которое затем можно "поймать" и обработать.</p>
+
+        <h4>Пример обработки исключений:</h4>
+        <pre>
+#include <iostream>
+#include <stdexcept>  // Для std::runtime_error
+
+using namespace std;
+
+void divide(int a, int b) {
+    if (b == 0) {
+        throw runtime_error("Деление на ноль невозможно!");  // Генерация исключения
+    }
+    cout << "Результат деления: " << a / b << endl;
+}
+
+int main() {
+    try {
+        divide(10, 0);  // Попытка деления на ноль
+    } catch (const runtime_error& e) {  // Обработка исключения
+        cout << "Ошибка: " << e.what() << endl;
+    }
+    return 0;
+}
+        </pre>
+        <p>Этот пример показывает, как генерировать исключения с помощью throw и обрабатывать их с помощью try-catch.</p>
+    </div>
+    <a href="index.html">Назад на главную</a>
+</body>
+</html>
