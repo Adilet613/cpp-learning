@@ -2,79 +2,42 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10. Строки</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
-            text-align: center;
-        }
-        .container {
-            margin: 50px auto;
-            width: 80%;
-            max-width: 600px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        p {
-            font-size: 18px;
-            line-height: 1.5;
-            color: #666;
-        }
-        .example {
-            background: #f1f1f1;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 20px;
-            font-family: "Courier New", monospace;
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
-        }
-    </style>
+    <title>10. Многократный доступ в C++</title>
 </head>
 <body>
-    <header>Урок 10: Строки</header>
-    <div class="container">
-        <h2>Что такое строки в C++?</h2>
-        <p>Строки в C++ — это последовательности символов. Строки в C++ могут быть представлены как массивы символов, а также с помощью стандартного типа данных <code>string</code>, который упрощает работу с текстовыми данными.</p>
-        <p>Строки можно создавать, изменять и манипулировать ими с помощью различных функций и методов, предоставляемых C++.</p>
-        
-        <div class="example">
-            <p><strong>Пример:</strong></p>
-            <pre>
-#include &lt;iostream&gt;
-#include &lt;string&gt;
+    <header>10. Многократный доступ в C++</header>
+    <div class="lesson">
+        <h3>Многократный доступ в C++</h3>
+        <p>Многократный доступ связан с ситуациями, когда несколько потоков пытаются одновременно работать с одними и теми же данными. Это может привести к ошибкам, если доступ не синхронизирован. Для этого в C++ используют мьютексы.</p>
+
+        <h4>Пример многократного доступа с синхронизацией:</h4>
+        <pre>
+#include <iostream>
+#include <thread>
+#include <mutex>
+
 using namespace std;
 
+mutex mtx;  // Мьютекс для синхронизации доступа
+
+void print_numbers(int id) {
+    mtx.lock();  // Захватываем мьютекс
+    cout << "Поток " << id << " выводит число" << endl;
+    mtx.unlock();  // Освобождаем мьютекс
+}
+
 int main() {
-    string name = "Алиса"; // Создаем строку
-    cout &lt;&lt; "Привет, " &lt;&lt; name &lt;&lt; "!" &lt;&lt; endl; // Выводим строку на экран
+    thread t1(print_numbers, 1);  // Создаем первый поток
+    thread t2(print_numbers, 2);  // Создаем второй поток
+
+    t1.join();  // Ожидаем завершения первого потока
+    t2.join();  // Ожидаем завершения второго потока
+
     return 0;
 }
-            </pre>
-        </div>
-
-        <p>В этом примере создается строка <code>name</code> и выводится на экран приветственное сообщение.</p>
-        <a href="index.html">Назад на главную</a>
+        </pre>
+        <p>Этот пример демонстрирует использование мьютекса (<code>mutex</code>) для синхронизации доступа к ресурсу (в данном случае, выводу на экран), чтобы избежать ошибок в многозадачной среде.</p>
     </div>
+    <a href="index.html">Назад на главную</a>
 </body>
 </html>
