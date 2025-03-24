@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>12. Наследование</title>
+</head>
+<body>
+    <header>12. Наследование в C++</header>
+    <div class="lesson">
+        <h3>Что такое наследование в C++</h3>
+        <p>Наследование позволяет создавать новые классы на основе существующих, наследуя их свойства и методы.</p>
+
+        <h4>Пример наследования:</h4>
+        <pre>
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    void eat() { cout << "Eating food" << endl; }
+};
+
+class Dog : public Animal {
+public:
+    void bark() { cout << "Barking!" << endl; }
+};
+
+int main() {
+    Dog dog;
+    dog.eat();  // Наследованный метод
+    dog.bark(); // Метод класса Dog
+    return 0;
+}
+        </pre>
+        <p>Класс Dog наследует от класса Animal метод eat() и добавляет собственный метод bark().</p>
+    </div>
+    <a href="index.html">Назад на главную</a>
+</body>
+</html>
