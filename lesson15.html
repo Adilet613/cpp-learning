@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>15. Исключения и обработка ошибок</title>
+</head>
+<body>
+    <header>15. Исключения и обработка ошибок в C++</header>
+    <div class="lesson">
+        <h3>Что такое исключения</h3>
+        <p>Исключения используются для обработки ошибок, возникающих во время выполнения программы.</p>
+
+        <h4>Пример обработки исключений:</h4>
+        <pre>
+#include <iostream>
+using namespace std;
+
+int divide(int a, int b) {
+    if (b == 0) {
+        throw "Деление на ноль!";
+    }
+    return a / b;
+}
+
+int main() {
+    try {
+        cout << divide(10, 2) << endl;
+        cout << divide(10, 0) << endl;  // Это вызовет исключение
+    } catch (const char* msg) {
+        cout << "Ошибка: " << msg << endl;
+    }
+    return 0;
+}
+        </pre>
+        <p>Этот код демонстрирует ловлю исключений с помощью конструкции try-catch.</p>
+    </div>
+    <a href="index.html">Назад на главную</a>
+</body>
+</html>
