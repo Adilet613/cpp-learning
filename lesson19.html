@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>19. Реализация структур данных</title>
+</head>
+<body>
+    <header>19. Реализация структур данных в C++</header>
+    <div class="lesson">
+        <h3>Что такое структуры данных</h3>
+        <p>Структуры данных — это способы организации и хранения данных, такие как массивы, списки, стеки и очереди.</p>
+
+        <h4>Пример реализации стека:</h4>
+        <pre>
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main() {
+    stack<int> s;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+
+    cout << "Top element: " << s.top() << endl;  // Отображает верхний элемент
+    s.pop();  // Удаляет верхний элемент
+
+    cout << "Top element after pop: " << s.top() << endl;
+    return 0;
+}
+        </pre>
+        <p>Этот код показывает, как использовать стек, который работает по принципу LIFO (Last In, First Out).</p>
+    </div>
+    <a href="index.html">Назад на главную</a>
+</body>
+</html>
