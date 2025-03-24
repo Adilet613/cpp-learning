@@ -2,84 +2,62 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8. Указатели</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
-            text-align: center;
-        }
-        .container {
-            margin: 50px auto;
-            width: 80%;
-            max-width: 600px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        p {
-            font-size: 18px;
-            line-height: 1.5;
-            color: #666;
-        }
-        .example {
-            background: #f1f1f1;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 20px;
-            font-family: "Courier New", monospace;
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
-        }
-    </style>
+    <title>8. Функции и многократный доступ</title>
 </head>
 <body>
-    <header>Урок 8: Указатели</header>
-    <div class="container">
-        <h2>Что такое указатели в C++?</h2>
-        <p>Указатели — это переменные, которые хранят адрес другой переменной в памяти. Они используются для работы с памятью и позволяют манипулировать данными на более низком уровне.</p>
-        <p>Указатели могут быть полезны для передачи данных между функциями без копирования значений, а также для работы с динамической памятью.</p>
-        
-        <div class="example">
-            <p><strong>Пример:</strong></p>
-            <pre>
-#include &lt;iostream&gt;
+    <header>8. Функции и многократный доступ в C++</header>
+    <div class="lesson">
+        <h3>Функции в C++</h3>
+        <p>Функции — это самостоятельные блоки кода, которые можно вызывать по имени. Они могут принимать параметры и возвращать значения. Это позволяет избежать дублирования кода и улучшить читаемость программы.</p>
+
+        <h4>Пример использования функции:</h4>
+        <pre>
+#include <iostream>
 using namespace std;
 
+int add(int a, int b) {
+    return a + b;  // Функция для сложения двух чисел
+}
+
 int main() {
-    int x = 10;
-    int* ptr = &x; // Указатель на переменную x
-    
-    cout &lt;&lt; "Значение x: " &lt;&lt; x &lt;&lt; endl;
-    cout &lt;&lt; "Адрес переменной x: " &lt;&lt; &x &lt;&lt; endl;
-    cout &lt;&lt; "Адрес, на который указывает ptr: " &lt;&lt; ptr &lt;&lt; endl;
-    cout &lt;&lt; "Значение, на которое указывает ptr: " &lt;&lt; *ptr &lt;&lt; endl;
+    int result = add(5, 3);  // Вызов функции add
+    cout << "Результат сложения: " << result << endl;
+    return 0;
+}
+        </pre>
+        <p>Здесь мы создали функцию `add`, которая принимает два параметра и возвращает их сумму. В функции `main` мы вызываем `add` с аргументами 5 и 3 и выводим результат.</p>
+
+        <h3>Многократный доступ</h3>
+        <p>Многократный доступ может быть связан с многозадачностью или многопоточностью, когда несколько потоков пытаются одновременно работать с одними и теми же данными. Это требует синхронизации, чтобы избежать ошибок.</p>
+
+        <h4>Пример многократного доступа с синхронизацией:</h4>
+        <pre>
+#include <iostream>
+#include <thread>
+#include <mutex>
+
+using namespace std;
+
+mutex mtx;  // Мьютекс для синхронизации доступа
+
+void print_numbers(int id) {
+    mtx.lock();  // Захватываем мьютекс
+    cout << "Поток " << id << " выводит число" << endl;
+    mtx.unlock();  // Освобождаем мьютекс
+}
+
+int main() {
+    thread t1(print_numbers, 1);  // Создаем первый поток
+    thread t2(print_numbers, 2);  // Создаем второй поток
+
+    t1.join();  // Ожидаем завершения первого потока
+    t2.join();  // Ожидаем завершения второго потока
 
     return 0;
 }
-            </pre>
-        </div>
-
-        <p>В этом примере мы создаем указатель <code>ptr</code>, который хранит адрес переменной <code>x</code>. Мы используем оператор <code>&</code> для получения адреса переменной и оператор <code>*</code> для получения значения, на которое указывает указатель.</p>
-        <a href="index.html">Назад на главную</a>
+        </pre>
+        <p>Этот пример демонстрирует использование мьютекса (`mutex`) для синхронизации доступа к ресурсу (в данном случае, выводу на экран), чтобы избежать ошибок в многозадачной среде.</p>
     </div>
+    <a href="index.html">Назад на главную</a>
 </body>
 </html>
