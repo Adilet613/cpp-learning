@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>14. Шаблоны</title>
+</head>
+<body>
+    <header>14. Шаблоны в C++</header>
+    <div class="lesson">
+        <h3>Что такое шаблоны в C++</h3>
+        <p>Шаблоны позволяют создавать обобщённый код, который работает с разными типами данных.</p>
+
+        <h4>Пример шаблона функции:</h4>
+        <pre>
+#include <iostream>
+using namespace std;
+
+template <typename T>
+T add(T a, T b) {
+    return a + b;
+}
+
+int main() {
+    cout << add(3, 4) << endl;      // для int
+    cout << add(3.5, 4.5) << endl;  // для double
+    return 0;
+}
+        </pre>
+        <p>Шаблон функции add работает с любыми типами данных, которые поддерживают операцию сложения.</p>
+    </div>
+    <a href="index.html">Назад на главную</a>
+</body>
+</html>
