@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>20. Умные указатели</title>
+</head>
+<body>
+    <header>20. Умные указатели в C++</header>
+    <div class="lesson">
+        <h3>Что такое умные указатели</h3>
+        <p>Умные указатели помогают управлять памятью в C++, автоматизируя освобождение ресурсов и предотвращая утечки памяти.</p>
+
+        <h4>Пример использования умного указателя:</h4>
+        <pre>
+#include <iostream>
+#include <memory>
+using namespace std;
+
+class MyClass {
+public:
+    MyClass() { cout << "Constructor called" << endl; }
+    ~MyClass() { cout << "Destructor called" << endl; }
+};
+
+int main() {
+    unique_ptr<MyClass> ptr = make_unique<MyClass>();  // Создание умного указателя
+    // Умный указатель автоматически удалит объект при выходе из области видимости
+    return 0;
+}
+        </pre>
+        <p>Этот пример демонстрирует использование уникального умного указателя, который автоматически освобождает память, когда объект больше не используется.</p>
+    </div>
+    <a href="index.html">Назад на главную</a>
+</body>
+</html>
