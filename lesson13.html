@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>13. Полиморфизм</title>
+</head>
+<body>
+    <header>13. Полиморфизм в C++</header>
+    <div class="lesson">
+        <h3>Что такое полиморфизм</h3>
+        <p>Полиморфизм позволяет использовать один интерфейс для объектов разных типов, обеспечивая переопределение методов в производных классах.</p>
+
+        <h4>Пример полиморфизма:</h4>
+        <pre>
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    virtual void sound() { cout << "Animal makes sound" << endl; }
+};
+
+class Dog : public Animal {
+public:
+    void sound() override { cout << "Woof!" << endl; }
+};
+
+int main() {
+    Animal* animal = new Dog();
+    animal->sound();  // Вызовет метод sound() класса Dog
+    delete animal;
+    return 0;
+}
+        </pre>
+        <p>Полиморфизм позволяет вызывать переопределённый метод на основе типа объекта, несмотря на то, что указатель имеет тип базового класса.</p>
+    </div>
+    <a href="index.html">Назад на главную</a>
+</body>
+</html>
