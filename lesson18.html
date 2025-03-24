@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>18. Многозадачность и потоки</title>
+</head>
+<body>
+    <header>18. Многозадачность и потоки в C++</header>
+    <div class="lesson">
+        <h3>Что такое многозадачность и потоки</h3>
+        <p>Многозадачность позволяет выполнять несколько задач одновременно. Потоки позволяют программе работать с несколькими процессами одновременно.</p>
+
+        <h4>Пример работы с потоками:</h4>
+        <pre>
+#include <iostream>
+#include <thread>
+using namespace std;
+
+void print_message() {
+    cout << "Hello from thread!" << endl;
+}
+
+int main() {
+    thread t(print_message);  // Создание потока
+    t.join();  // Ожидание завершения потока
+    return 0;
+}
+        </pre>
+        <p>Этот код создает новый поток, который выполняет функцию print_message.</p>
+    </div>
+    <a href="index.html">Назад на главную</a>
+</body>
+</html>
