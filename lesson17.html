@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>17. Алгоритмы в C++</title>
+</head>
+<body>
+    <header>17. Алгоритмы в C++</header>
+    <div class="lesson">
+        <h3>Что такое алгоритмы в C++</h3>
+        <p>Алгоритмы — это наборы операций, которые можно применить к данным, например, сортировка или поиск.</p>
+
+        <h4>Пример сортировки с использованием алгоритмов:</h4>
+        <pre>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    vector<int> v = {5, 2, 8, 1, 4};
+    sort(v.begin(), v.end());
+    for (int i : v) {
+        cout << i << " ";
+    }
+    return 0;
+}
+        </pre>
+        <p>Этот пример использует алгоритм сортировки для упорядочивания элементов вектора.</p>
+    </div>
+    <a href="index.html">Назад на главную</a>
+</body>
+</html>
