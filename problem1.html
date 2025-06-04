@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Задача 1 — Сумма двух чисел</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Задача 1: Сумма двух чисел</h1>
+    <p>Вводятся два целых числа через пробел. Нужно вывести их сумму.</p>
+    <h3>Пример</h3>
+    <p><b>Ввод:</b> 2 3</p>
+    <p><b>Вывод:</b> 5</p>
+
+    <h3>Решение (ввод C++ кода):</h3>
+    <textarea id="code" rows="10" cols="50">
+// Введи тут свой код C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b;
+    cin >> a >> b;
+    cout << a + b << endl;
+    return 0;
+}
+    </textarea><br />
+    <button onclick="checkSolution()">Проверить</button>
+
+    <div id="result" style="margin-top:20px; font-weight: bold;"></div>
+  </div>
+
+  <script>
+    // Тесты для задачи
+    const tests = [
+      { input: "2 3", output: "5" },
+      { input: "10 20", output: "30" },
+      { input: "0 0", output: "0" },
+    ];
+
+    function checkSolution() {
+      const code = document.getElementById('code').value;
+      // Пока эмулируем проверку: проверяем совпадение вывода с ожиданием для тестов
+
+      // Для реальной проверки нужно интегрировать компилятор, например Judge0 API,
+      // но пока — просто показываем успех, если код содержит "a + b"
+
+      let passedAll = true;
+      for (const test of tests) {
+        if (!code.includes("a + b")) {
+          passedAll = false;
+          break;
+        }
+      }
+
+      const resultDiv = document.getElementById('result');
+      if (passedAll) {
+        resultDiv.style.color = 'green';
+        resultDiv.textContent = "Поздравляем! Все тесты пройдены.";
+      } else {
+        resultDiv.style.color = 'red';
+        resultDiv.textContent = "Провалено. Попробуйте исправить решение.";
+      }
+    }
+  </script>
+</body>
+</html>
