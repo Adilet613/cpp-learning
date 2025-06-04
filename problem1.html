@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <title>Задача 1 — Сумма двух чисел</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    textarea { width: 100%; max-width: 600px; font-family: monospace; }
+    button { margin-top: 10px; padding: 10px 20px; }
+    #result { margin-top: 20px; font-weight: bold; white-space: pre-wrap; }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -14,7 +19,7 @@
     <p><b>Вывод:</b> 5</p>
 
     <h3>Решение (ввод C++ кода):</h3>
-    <textarea id="code" rows="10" cols="50">
+    <textarea id="code" rows="12" cols="60">
 // Введи тут свой код C++
 #include &lt;iostream&gt;
 using namespace std;
@@ -26,42 +31,89 @@ int main() {
     return 0;
 }
     </textarea><br />
-    <button onclick="checkSolution()">Проверить</button>
+    <button onclick="submitSolution()">Проверить</button>
 
-    <div id="result" style="margin-top:20px; font-weight: bold;"></div>
+    <div id="result"></div>
   </div>
 
   <script>
+    const API_URL = "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&wait=true";
+    const RAPIDAPI_HOST = "judge0-ce.p.rapidapi.com";
+    const RAPIDAPI_KEY = "YOUR_RAPIDAPI_KEY"; // <-- сюда вставь свой ключ RapidAPI
+
     // Тесты для задачи
     const tests = [
-      { input: "2 3", output: "5" },
-      { input: "10 20", output: "30" },
-      { input: "0 0", output: "0" },
+      { input: "2 3\n", output: "5\n" },
+      { input: "10 20\n", output: "30\n" },
+      { input: "0 0\n", output: "0\n" },
     ];
 
-    function checkSolution() {
+    function base64Encode(str) {
+      return btoa(unescape(encodeURIComponent(str)));
+    }
+    function base64Decode(str) {
+      return decodeURIComponent(escape(atob(str)));
+    }
+
+    async function submitSolution() {
       const code = document.getElementById('code').value;
-      // Пока эмулируем проверку: проверяем совпадение вывода с ожиданием для тестов
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.color = "black";
+      resultDiv.textContent = "Отправка решения... Подождите.";
 
-      // Для реальной проверки нужно интегрировать компилятор, например Judge0 API,
-      // но пока — просто показываем успех, если код содержит "a + b"
+      for (let i = 0; i < tests.length; i++) {
+        const test = tests[i];
 
-      let passedAll = true;
-      for (const test of tests) {
-        if (!code.includes("a + b")) {
-          passedAll = false;
-          break;
+        const payload = {
+          language_id: 54, // C++17
+          source_code: base64Encode(code),
+          stdin: base64Encode(test.input),
+          expected_output: base64Encode(test.output),
+          // Важно: base64_encoded=true в URL
+        };
+
+        try {
+          const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-RapidAPI-Host": RAPIDAPI_HOST,
+              "X-RapidAPI-Key": RAPIDAPI_KEY,
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            resultDiv.style.color = "red";
+            resultDiv.textContent = `Ошибка API: ${response.status} ${response.statusText}`;
+            return;
+          }
+
+          const data = await response.json();
+
+          if (data.status.id !== 3) { // 3 = Accepted
+            const message = base64Decode(data.stderr || data.compile_output || data.message || "Ошибка");
+            resultDiv.style.color = "red";
+            resultDiv.textContent = `Тест ${i + 1} не пройден:\n${message}`;
+            return;
+          }
+
+          // проверяем вывод
+          const output = base64Decode(data.stdout);
+          if (output.trim() !== test.output.trim()) {
+            resultDiv.style.color = "red";
+            resultDiv.textContent = `Тест ${i + 1} не пройден:\nОжидалось: ${test.output.trim()}\nПолучено: ${output.trim()}`;
+            return;
+          }
+        } catch (e) {
+          resultDiv.style.color = "red";
+          resultDiv.textContent = "Ошибка при запросе к API.";
+          return;
         }
       }
 
-      const resultDiv = document.getElementById('result');
-      if (passedAll) {
-        resultDiv.style.color = 'green';
-        resultDiv.textContent = "Поздравляем! Все тесты пройдены.";
-      } else {
-        resultDiv.style.color = 'red';
-        resultDiv.textContent = "Провалено. Попробуйте исправить решение.";
-      }
+      resultDiv.style.color = "green";
+      resultDiv.textContent = "Поздравляем! Все тесты пройдены.";
     }
   </script>
 </body>
